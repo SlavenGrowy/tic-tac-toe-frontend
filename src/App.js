@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Players from "./components/Players";
+import User from "./components/User";
+import {Button} from "@mui/material";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <header>
+            <h1>Tic-Tac-Toe</h1>
+            <div className="user">
+                <User />
+                <Button variant="contained" size="small">
+                    Change
+                </Button>
+            </div>
+        </header>
+        <div className="content">
+            <Players />
+        </div>
     </div>
   );
 }

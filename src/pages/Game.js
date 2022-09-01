@@ -1,8 +1,17 @@
 import User from "../components/User";
 import {Button} from "@mui/material";
-import React from "react";
+import React, {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 function Game() {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        setTimeout(() => {
+            navigate("/")
+        }, 5000)
+    }, [])
+
     return (
         <div className="App">
             <header>

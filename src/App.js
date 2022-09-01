@@ -1,24 +1,26 @@
 import React from "react";
-import Players from "./components/Players";
-import User from "./components/User";
-import {Button} from "@mui/material";
+import {Link, Route, Routes} from "react-router-dom";
+import Home from "./pages/Home"
+import Game from "./pages/Game";
 
 function App() {
   return (
-    <div className="App">
-        <header>
-            <h1>Tic-Tac-Toe</h1>
-            <div className="user">
-                <User />
-                <Button variant="contained" size="small">
-                    Change
-                </Button>
-            </div>
-        </header>
-        <div className="content">
-            <Players />
-        </div>
-    </div>
+      <>
+        <nav>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/game">Game</Link>
+                </li>
+            </ul>
+        </nav>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/game" element={<Game />} />
+        </Routes>
+        </>
   );
 }
 

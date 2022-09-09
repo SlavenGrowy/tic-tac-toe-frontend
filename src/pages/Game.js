@@ -1,32 +1,33 @@
-import User from "../components/User";
-import {Button} from "@mui/material";
-import React, {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import User from '../components/User'
+import { Button } from '@mui/material'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Game() {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    useEffect(() => {
-        setTimeout(() => {
-            navigate("/")
-        }, 5000)
-    }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/')
+    }, 5000)
+  }, [])
 
-    return (
-        <div className="App">
-            <header>
-                <h1>Tic-Tac-Toe</h1>
-                <div className="user">
-                    <User />
-                    <Button variant="contained" size="small">
-                        Change</Button>
-                </div>
-            </header>
-            <div className="content">
-                <p>Game Screen</p>
-            </div>
+  return (
+    <div className='App'>
+      <header>
+        <h1>Tic-Tac-Toe</h1>
+        <div className='user'>
+          <User />
+          <Button variant='contained' size='small'>
+            Change
+          </Button>
         </div>
-    )
+      </header>
+      <div className='content'>
+        <p>Game Screen</p>
+      </div>
+    </div>
+  )
 }
 
-export default Game;
+export default Game

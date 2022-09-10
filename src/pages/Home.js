@@ -3,6 +3,7 @@ import Players from "../components/Players";
 import User from "../components/User";
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import FormDialog from "./Dialog";
 
 function Home() {
     const navigate = useNavigate()
@@ -13,8 +14,7 @@ function Home() {
                     <h1>Tic-Tac-Toe</h1>
                     <div className="user">
                         <User />
-                        <Button variant="contained" size="small">
-                            Change</Button>
+                        <FormDialog />
                         <Button variant="contained" onClick={ () => {navigate("/game")} }>Navigate to Game Screen</Button>
                     </div>
                 </header>

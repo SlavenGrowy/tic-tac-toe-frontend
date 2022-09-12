@@ -1,4 +1,3 @@
-import User from "../components/User";
 import {Button} from "@mui/material";
 import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
@@ -17,7 +16,6 @@ function Game() {
             <header>
                 <h1>Tic-Tac-Toe</h1>
                 <div className="user">
-                    <User />
                     <Button variant="contained" size="small">
                         Change</Button>
                 </div>

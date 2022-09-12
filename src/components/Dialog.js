@@ -4,12 +4,11 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import {useEffect, useState} from "react";
 
 function FormDialog() {
     const [open, setOpen] = useState(false);
-    const [username, setUsername] = useState("")
+    const [username, setUsername] = useState(localStorage.getItem('username'));
 
     const handleOpen = () => {
         setOpen(true);
@@ -19,34 +18,40 @@ function FormDialog() {
         setOpen(false);
     };
 
+    const updateUsername = () => {
+        localStorage.setItem('username', username);
+    }
+
     useEffect(() => {
-        localStorage.setItem("username", JSON.stringify(username));
-    }, [username]);
+        if (localStorage.getItem('username') == null) {
+            handleOpen();
+        }
+    },[]);
 
     return (
         <div>
+            <h3>{username}</h3>
             <Button variant="outlined" onClick={handleOpen}>
                 Change
             </Button>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open}>
                 <DialogContent>
-                    <DialogContentText>
-                        Input name:
-                    </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="username"
                         label="Username"
-                        type="username"
+                        type="text"
                         value={username}
                         fullWidth
                         variant="standard"
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => { setUsername(e.target.value) }}
+                        required
+                        placeholder="Enter your username"
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Save</Button>
+                    <Button type="submit" onClick={() => {handleClose(); updateUsername();}}>Save</Button>
                 </DialogActions>
             </Dialog>
         </div>

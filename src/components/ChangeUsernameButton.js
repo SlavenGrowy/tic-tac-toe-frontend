@@ -22,8 +22,8 @@ export const ChangeUsernameButton = ({onNameChange}) => {
 
     useEffect(() => {
         if (localUserExists()) {
-            const {username} = getLocalUser()
-            onNameChange(username)
+            const {username} = getLocalUser();
+            onNameChange(username);
         } else {
             updateLocalId();
             handleOpen();
@@ -42,6 +42,7 @@ export const ChangeUsernameButton = ({onNameChange}) => {
                         margin="dense"
                         id="username"
                         label="Username"
+                        value={usernameInput}
                         type="text"
                         fullWidth
                         variant="standard"

@@ -8,7 +8,9 @@ const Players = () => {
 
     useEffect(() => {
         const interval = setInterval(updateOnlineUsersList, userFetchInterval);
-        clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+        };
     }, []);
 
     const updateOnlineUsersList = (async () => {

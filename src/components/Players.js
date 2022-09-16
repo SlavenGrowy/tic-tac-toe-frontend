@@ -7,9 +7,8 @@ const Players = () => {
     const [onlineUsers, setOnlineUsers] = useState([]);
 
     useEffect(() => {
-        console.log('Fetching online players')
-        setInterval(updateOnlineUsersList, userFetchInterval)
-    //     Todo clear interval☝️
+        const interval = setInterval(updateOnlineUsersList, userFetchInterval);
+        clearInterval(interval);
     }, []);
 
     const updateOnlineUsersList = (async () => {

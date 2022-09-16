@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import {getLocalUser, updateLocalId, updateLocalUsername, localUserExists} from "../localStore";
 
-function FormDialog() {
+export const ChangeUsernameButton = ({onNameChange}) => {
     const [open, setOpen] = useState(false);
 
     const [usernameInput, setUsernameInput] = useState("");
@@ -19,8 +19,6 @@ function FormDialog() {
     const handleClose = () => {
         setOpen(false);
     };
-
-
 
     useEffect(() => {
         if (localUserExists()) {

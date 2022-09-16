@@ -6,19 +6,23 @@ import {ChangeUsernameButton} from "../components/ChangeUsernameButton";
 
 function Home() {
     const navigate = useNavigate()
+    const [username,setUsername] = useState('');
 
     return (
         <div className="App">
-                <header>
-                    <h1>Tic-Tac-Toe</h1>
-                    <div className="user">
-                        <FormDialog />
-                        <Button variant="contained" onClick={ () => {navigate("/game")} }>Navigate to Game Screen</Button>
-                    </div>
-                </header>
-                <div className="content">
-                    <Players />
+            <header>
+                <h1>Tic-Tac-Toe</h1>
+                <div className="user">
+                    <h3>{username}</h3>
+                    <ChangeUsernameButton onNameChange={(newUsername)=>{setUsername(newUsername)}}/>
+                    <Button variant="contained" onClick={() => {
+                        navigate("/game")
+                    }}>Navigate to Game Screen</Button>
                 </div>
+            </header>
+            <div className="content">
+                <Players/>
+            </div>
         </div>
     );
 }

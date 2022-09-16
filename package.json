@@ -2,6 +2,7 @@
   "name": "tic-tac-toe-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8086",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

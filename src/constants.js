@@ -1,1 +1,1 @@
-export const userFetchInterval = 1000;
+export const userFetchInterval = 1000

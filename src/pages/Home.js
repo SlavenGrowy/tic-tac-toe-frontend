@@ -1,12 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Players from '../components/Players'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { ChangeUsernameButton } from '../components/ChangeUsernameButton'
+import { updateHeartbeat } from '../api'
+import { sessionUserExists } from '../sessionStore'
+import { getLocalUser } from '../localStore'
+import { userHeartbeatInterval } from '../constants'
 
-function Home() {
+export default function Home() {
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
+
+  const updateUserHeartbeat = () => {
+    if (sessionUserExists()) {
+      const user = getLocalUser()
+      updateHeartbeat(user).catch((e) => console.log(e))
+    }
+  }
+
+  useEffect(() => {
+    const interval = setInterval(updateUserHeartbeat, userHeartbeatInterval)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   return (
     <div className='App'>
@@ -35,5 +53,3 @@ function Home() {
     </div>
   )
 }
-
-export default Home

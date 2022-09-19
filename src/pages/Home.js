@@ -4,8 +4,7 @@ import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { ChangeUsernameButton } from '../components/ChangeUsernameButton'
 import { updateHeartbeat } from '../api'
-import { sessionUserExists } from '../sessionStore'
-import { getLocalUser } from '../localStore'
+import { getSessionUser, sessionUserExists } from '../sessionStore'
 import { userHeartbeatInterval } from '../constants'
 
 export default function Home() {
@@ -14,7 +13,7 @@ export default function Home() {
 
   const updateUserHeartbeat = () => {
     if (sessionUserExists()) {
-      const user = getLocalUser()
+      const user = getSessionUser()
       updateHeartbeat(user).catch((e) => console.log(e))
     }
   }

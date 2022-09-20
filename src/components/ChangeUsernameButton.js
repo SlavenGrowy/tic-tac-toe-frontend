@@ -7,7 +7,6 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import { getLocalUser, updateLocalId, updateLocalUsername, localUserExists } from '../localStore'
 import { updateHeartbeat } from '../api'
-import { updateSessionId, updateSessionUsername } from '../sessionStore'
 
 export const ChangeUsernameButton = ({ onNameChange }) => {
   const [open, setOpen] = useState(false)
@@ -22,11 +21,10 @@ export const ChangeUsernameButton = ({ onNameChange }) => {
     setOpen(false)
   }
 
-  const updateUserData = () => {
+  const updateUserData = async () => {
     updateLocalUsername(usernameInput)
-    updateSessionUsername(usernameInput)
     onNameChange(usernameInput)
-    updateHeartbeat(getLocalUser()).catch((e) => console.log(e))
+    await updateHeartbeat(getLocalUser())
   }
 
   useEffect(() => {
@@ -35,7 +33,6 @@ export const ChangeUsernameButton = ({ onNameChange }) => {
       onNameChange(username)
     } else {
       updateLocalId()
-      updateSessionId()
       handleOpen()
     }
   }, [])
@@ -66,8 +63,8 @@ export const ChangeUsernameButton = ({ onNameChange }) => {
         <DialogActions>
           <Button
             type='submit'
-            onClick={() => {
-              updateUserData()
+            onClick={async () => {
+              await updateUserData()
               handleClose()
             }}
           >

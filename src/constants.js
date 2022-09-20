@@ -1,2 +1,2 @@
-export const userFetchInterval = 1000
-export const userHeartbeatInterval = 10 * 1000
+export const userFetchInterval = 3 * 1000
+export const userHeartbeatInterval = 15 * 1000

@@ -19,6 +19,7 @@ export default function Home() {
   }
 
   useEffect(() => {
+    updateUserHeartbeat()
     const interval = setInterval(updateUserHeartbeat, userHeartbeatInterval)
     return () => {
       clearInterval(interval)

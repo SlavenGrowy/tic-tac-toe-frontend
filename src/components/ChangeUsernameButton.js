@@ -6,7 +6,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import { getLocalUser, updateLocalId, updateLocalUsername, localUserExists } from '../localStore'
-import { updateHeartbeat } from '../api'
+import { sendHeartbeat } from '../api'
 
 export const ChangeUsernameButton = ({ onNameChange }) => {
   const [open, setOpen] = useState(false)
@@ -24,7 +24,7 @@ export const ChangeUsernameButton = ({ onNameChange }) => {
   const updateUserData = async () => {
     updateLocalUsername(usernameInput)
     onNameChange(usernameInput)
-    await updateHeartbeat(getLocalUser())
+    await sendHeartbeat(getLocalUser())
   }
 
   useEffect(() => {

@@ -3,7 +3,7 @@ export const fetchOnlineUsers = async () => {
   return await response.json()
 }
 
-export const updateHeartbeat = async (user) => {
+export const sendHeartbeat = async (user) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

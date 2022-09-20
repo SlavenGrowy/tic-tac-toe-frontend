@@ -3,8 +3,8 @@ import Players from '../components/Players'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { ChangeUsernameButton } from '../components/ChangeUsernameButton'
-import { updateHeartbeat } from '../api'
-import { userHeartbeatInterval } from '../constants'
+import { sendHeartbeat } from '../api'
+import { heartbeatInterval } from '../constants'
 import { getLocalUser, localUserExists } from '../localStore'
 
 export default function Home() {
@@ -14,13 +14,13 @@ export default function Home() {
   const updateUserHeartbeat = () => {
     if (localUserExists()) {
       const user = getLocalUser()
-      updateHeartbeat(user).catch((e) => console.log(e))
+      sendHeartbeat(user).catch((e) => console.log(e))
     }
   }
 
   useEffect(() => {
     updateUserHeartbeat()
-    const interval = setInterval(updateUserHeartbeat, userHeartbeatInterval)
+    const interval = setInterval(updateUserHeartbeat, heartbeatInterval)
     return () => {
       clearInterval(interval)
     }

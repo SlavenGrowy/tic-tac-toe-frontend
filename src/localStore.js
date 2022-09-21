@@ -19,5 +19,5 @@ export const localUserExists = () => {
   const id = localStorage.getItem(idKey)
   const username = localStorage.getItem(usernameKey)
 
-  return id !== null || username !== null
+  return id !== null && username !== null
 }

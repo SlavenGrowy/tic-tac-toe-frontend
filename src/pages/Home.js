@@ -14,7 +14,7 @@ export default function Home() {
   const updateUserHeartbeat = () => {
     if (localUserExists()) {
       const user = getLocalUser()
-      sendHeartbeat(user).catch((e) => console.log(e))
+      sendHeartbeat(user).catch((e) => console.error(e))
     }
   }
 

@@ -11,3 +11,9 @@ export const sendHeartbeat = async (user) => {
   }
   return await fetch('/heartbeat', requestOptions)
 }
+
+export const getStartedGame = async (playerId) => {
+  const response = await fetch(`/my-started-game?playerId=${playerId}`)
+  const games = await response.json()
+  return games[0]
+}

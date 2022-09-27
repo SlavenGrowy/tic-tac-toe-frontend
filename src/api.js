@@ -11,3 +11,15 @@ export const sendHeartbeat = async (user) => {
   }
   return await fetch('/heartbeat', requestOptions)
 }
+
+export const getStartedGame = async (playerId) => {
+  const response = await fetch(`/my-started-game?playerId=${playerId}`)
+
+  if (response.status === 404) {
+    console.log('NOT FOUND started game')
+    return []
+  }
+
+  const games = await response.json()
+  return games[0]
+}

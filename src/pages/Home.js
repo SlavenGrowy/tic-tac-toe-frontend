@@ -3,8 +3,8 @@ import Players from '../components/Players'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { ChangeUsernameButton } from '../components/ChangeUsernameButton'
-import { sendHeartbeat } from '../api'
-import { heartbeatInterval } from '../constants'
+import { getStartedGame, sendHeartbeat } from '../api'
+import { myGameFetchInterval, heartbeatInterval } from '../constants'
 import { getLocalUser, localUserExists } from '../localStore'
 
 export default function Home() {
@@ -18,11 +18,24 @@ export default function Home() {
     }
   }
 
+  const pollForStartedGame = () => {
+    const playerId = getLocalUser().id
+    getStartedGame(playerId)
+      .then((data) => {
+        if (data) {
+          navigate(`/game/${data.gameId}`)
+        }
+      })
+      .catch((e) => console.error(e))
+  }
+
   useEffect(() => {
     updateUserHeartbeat()
-    const interval = setInterval(updateUserHeartbeat, heartbeatInterval)
+    const heartbeatIntervalId = setInterval(updateUserHeartbeat, heartbeatInterval)
+    const gamedIntervalId = setInterval(pollForStartedGame, myGameFetchInterval)
     return () => {
-      clearInterval(interval)
+      clearInterval(heartbeatIntervalId)
+      clearInterval(gamedIntervalId)
     }
   }, [])
 

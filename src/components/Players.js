@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { fetchOnlineUsers } from '../api'
+import { createGame, fetchOnlineUsers } from '../api'
 import { userFetchInterval } from '../constants'
+import { getLocalUser } from '../localStore'
+import { List, ListItemButton, ListItemText } from '@mui/material'
 
 const Players = () => {
   const [onlineUsers, setOnlineUsers] = useState([])
@@ -21,11 +23,20 @@ const Players = () => {
   return (
     <div className='players'>
       <h2>Online Players HERE</h2>
-      <ul>
+      <List>
         {onlineUsers.map((user) => (
-          <li key={user.id}>{user.username}</li>
+          <ListItemButton
+            key={user.id}
+            onClick={async () => {
+              const localUserId = getLocalUser().id
+              const invitedUserId = user.id
+              if (localUserId !== invitedUserId) await createGame([localUserId, invitedUserId])
+            }}
+          >
+            <ListItemText primary={user.username} />
+          </ListItemButton>
         ))}
-      </ul>
+      </List>
     </div>
   )
 }

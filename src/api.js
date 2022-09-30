@@ -23,3 +23,13 @@ export const getStartedGame = async (playerId) => {
   const games = await response.json()
   return games[0]
 }
+
+export const createGame = async (players) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ players: players }),
+  }
+  console.log('players = ', players)
+  return await fetch('/game', requestOptions)
+}

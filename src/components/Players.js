@@ -30,7 +30,7 @@ const Players = () => {
             onClick={async () => {
               const localUserId = getLocalUser().id
               const invitedUserId = user.id
-              if (localUserId !== invitedUserId) createGame([localUserId, invitedUserId]).catch(e => console.error(e))
+              if (localUserId !== invitedUserId) createGame([localUserId, invitedUserId]).catch((e) => console.error(e))
             }}
           >
             <ListItemText primary={user.username} />

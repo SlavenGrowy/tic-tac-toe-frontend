@@ -1,14 +1,13 @@
 import { Button } from '@mui/material'
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { joinRoom } from '../socket-client.js'
 
 function Game() {
-  const navigate = useNavigate()
+  const { gameId } = useParams()
 
   useEffect(() => {
-    setTimeout(() => {
-      navigate('/')
-    }, 5000)
+    joinRoom(gameId)
   }, [])
 
   return (

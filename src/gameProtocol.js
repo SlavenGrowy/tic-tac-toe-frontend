@@ -1,4 +1,4 @@
-import { gameStatus } from './constants.js'
+import { GAME_STATUS } from './constants.js'
 
 const X = 1
 const O = 0
@@ -11,7 +11,7 @@ export const gameStateEventArgs = {
     { id: '', username: '', piece: O },
   ],
   playerTurn: '',
-  state: gameStatus.STARTED,
+  state: GAME_STATUS.STARTED,
   board: [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
 }
 

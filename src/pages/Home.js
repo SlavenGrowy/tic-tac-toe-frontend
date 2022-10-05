@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { ChangeUsernameButton } from '../components/ChangeUsernameButton'
 import { getStartedGame, sendHeartbeat } from '../api'
-import { myGameFetchInterval, heartbeatInterval } from '../constants'
+import { GAME_FETCH_INTERVAL, HEARTBEAT_INTERVAL } from '../constants'
 import { getLocalUser, localUserExists } from '../localStore'
 
 export default function Home() {
@@ -31,8 +31,8 @@ export default function Home() {
 
   useEffect(() => {
     updateUserHeartbeat()
-    const heartbeatIntervalId = setInterval(updateUserHeartbeat, heartbeatInterval)
-    const gamedIntervalId = setInterval(pollForStartedGame, myGameFetchInterval)
+    const heartbeatIntervalId = setInterval(updateUserHeartbeat, HEARTBEAT_INTERVAL)
+    const gamedIntervalId = setInterval(pollForStartedGame, GAME_FETCH_INTERVAL)
     return () => {
       clearInterval(heartbeatIntervalId)
       clearInterval(gamedIntervalId)

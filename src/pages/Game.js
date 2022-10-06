@@ -2,13 +2,17 @@ import { Button } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { gameState, joinRoom } from '../socket-client.js'
+import { GAME_STATE } from '../constants.js'
 
 function Game() {
   const { gameId } = useParams()
 
   useEffect(() => {
     joinRoom(gameId)
-    gameState()
+    addEventListener(GAME_STATE, gameState)
+    return () => {
+      removeEventListener(GAME_STATE, gameState)
+    }
   }, [])
 
   return (

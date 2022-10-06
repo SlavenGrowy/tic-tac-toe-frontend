@@ -1,16 +1,19 @@
-import { GAME_STATE, JOIN_ROOM, MOVE_PLAYED, SOCKET } from './constants'
-import { movePlayedEventArgs } from './gameProtocol.js'
+import { GAME_STATE, JOIN_ROOM, MOVE_PLAYED } from './constants'
+import { mockMovePlayedEventArgs } from './gameProtocol.js'
+import { io } from 'socket.io-client'
+
+const socket = io('http://localhost:8086/game')
 
 export const joinRoom = (roomId) => {
-  SOCKET.emit(JOIN_ROOM, roomId)
+  socket.emit(JOIN_ROOM, roomId)
 }
 
 export const gameState = () => {
-  SOCKET.on(GAME_STATE, (gameStateEventArgs) => {
+  socket.on(GAME_STATE, (gameStateEventArgs) => {
     //TODO: use a method for updating game state
   })
 }
 
 export const movePlayed = () => {
-  SOCKET.emit(MOVE_PLAYED, movePlayedEventArgs)
+  socket.emit(MOVE_PLAYED, mockMovePlayedEventArgs)
 }

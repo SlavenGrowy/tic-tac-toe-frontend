@@ -4,7 +4,7 @@ const X = 1
 const O = 0
 const EMPTY = 9
 
-export const gameStateEventArgs = {
+export const mockGameStateEventArgs = {
   id: '',
   players: [
     { id: '', username: '', piece: X },
@@ -15,7 +15,7 @@ export const gameStateEventArgs = {
   board: [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
 }
 
-export const movePlayedEventArgs = {
+export const mockMovePlayedEventArgs = {
   player: '',
   move: { piece: '', position: '' },
 }

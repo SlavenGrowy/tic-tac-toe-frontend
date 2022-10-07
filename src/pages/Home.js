@@ -7,7 +7,7 @@ import { getStartedGame, sendHeartbeat } from '../api'
 import { GAME_FETCH_INTERVAL, HEARTBEAT_INTERVAL } from '../constants'
 import { getLocalUser, localUserExists } from '../localStore'
 
-export default function Home() {
+export function Home() {
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
 

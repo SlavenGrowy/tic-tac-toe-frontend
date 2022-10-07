@@ -8,7 +8,21 @@ import { X } from '../constants'
 export const Game = () => {
   const { gameId } = useParams()
 
+  const playMockMove = () => {
+    console.log('Mock Move Played')
+    playMove({
+      gameId,
+      player: getLocalUser().id,
+      move: { piece: X, position: 5}
+    })
+  }
+
+  const callback = useCallback((gameState) => {
+    console.log('GAME_STATE', gameState)
+  }, [])
+
   useEffect(() => {
+    onGameState(callback)
     joinRoom(gameId)
     return () => {
       offGameState(callback)

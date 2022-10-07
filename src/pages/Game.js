@@ -13,7 +13,7 @@ export const Game = () => {
     playMove({
       gameId,
       player: getLocalUser().id,
-      move: { piece: X, position: 5}
+      move: { piece: X, position: 5 },
     })
   }
 

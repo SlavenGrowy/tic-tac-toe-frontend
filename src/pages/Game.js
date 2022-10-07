@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import React, { useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { joinRoom, playMove, offGameState, onGameState } from '../socket-client.js'
+import { joinRoom, playMove, offGameState, onGameState } from '../socketClient.js'
 import { getLocalUser } from '../localStore'
 import { X } from '../constants'
 

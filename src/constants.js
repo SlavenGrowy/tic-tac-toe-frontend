@@ -11,3 +11,4 @@ export const MOVE_PLAYED = 'MOVE_PLAYED'
 export const X = 1
 export const O = 0
 export const EMPTY = 9
+export const GAME_SOCKET_URL = 'http://localhost:8086/game'

@@ -1,17 +1,17 @@
 import { Button } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { gameState, joinRoom } from '../socket-client.js'
-import { GAME_STATE } from '../constants.js'
+import { joinRoom, playMove, offGameState, onGameState } from '../socket-client.js'
+import { getLocalUser } from '../localStore'
+import { X } from '../constants'
 
-function Game() {
+export const Game = () => {
   const { gameId } = useParams()
 
   useEffect(() => {
     joinRoom(gameId)
-    addEventListener(GAME_STATE, gameState)
     return () => {
-      removeEventListener(GAME_STATE, gameState)
+      offGameState(callback)
     }
   }, [])
 
@@ -27,9 +27,10 @@ function Game() {
       </header>
       <div className='content'>
         <p>Game Screen</p>
+        <Button variant='contained' size='small' onClick={playMockMove}>
+          Play Mock Move
+        </Button>
       </div>
     </div>
   )
 }
-
-export default Game

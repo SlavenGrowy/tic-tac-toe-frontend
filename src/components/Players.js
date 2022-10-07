@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createGame, fetchOnlineUsers } from '../api'
-import { userFetchInterval } from '../constants'
+import { USER_FETCH_INTERVAL } from '../constants'
 import { getLocalUser } from '../localStore'
 import { List, ListItemButton, ListItemText } from '@mui/material'
 
@@ -9,7 +9,7 @@ const Players = () => {
 
   useEffect(() => {
     updateOnlineUsersList().catch((e) => console.error(e))
-    const interval = setInterval(updateOnlineUsersList, userFetchInterval)
+    const interval = setInterval(updateOnlineUsersList, USER_FETCH_INTERVAL)
     return () => {
       clearInterval(interval)
     }

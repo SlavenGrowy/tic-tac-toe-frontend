@@ -50,3 +50,8 @@ h3 {
   border-bottom: 1px solid #eee;
   margin: 0 auto;
 }
+
+.boardButtons {
+  width: 150px;
+  height: 150px;
+}

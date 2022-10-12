@@ -1,13 +1,5 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-
-const printPiece = (piece) => {
-  switch (piece) {
-    case 0:
-      return 'O'
-    case 1:
-      return 'X'
-  }
-}
+import { printPiece } from '../util'
 
 const Info = (props) => {
   const firstPlayer = props.data.players[0]
@@ -31,7 +23,7 @@ const Info = (props) => {
                 {printPiece(firstPlayer.piece)}
               </TableCell>
               <TableCell align='right'>{printPiece(secondPlayer.piece)}</TableCell>
-              <TableCell align='right'>{playerTurn}</TableCell>
+              <TableCell align='right'>{playerTurn === firstPlayer.id ? firstPlayer.username : secondPlayer.username}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

@@ -1,16 +1,6 @@
 import React from 'react'
 import { Box, Button, Grid } from '@mui/material'
-
-const printPiece = (piece) => {
-  switch (piece) {
-    case 0:
-      return 'O'
-    case 1:
-      return 'X'
-    case 9:
-      return ''
-  }
-}
+import { printPiece } from '../util'
 
 function FormRow(props) {
   return (

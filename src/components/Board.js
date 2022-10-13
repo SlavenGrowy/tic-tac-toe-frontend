@@ -1,45 +1,22 @@
 import React from 'react'
-import { Box, Button, Grid } from '@mui/material'
-import { printPiece } from '../util'
-
-function FormRow(props) {
-  return (
-    <React.Fragment>
-      <Grid padding='2px' item>
-        <Button className='boardButtons' sx='font-size: 50px; background-color: #abcdef'>
-          {printPiece(props.board[0])}
-        </Button>
-      </Grid>
-      <Grid padding='2px' item>
-        <Button className='boardButtons' sx='font-size: 50px; background-color: #abcdef'>
-          {printPiece(props.board[1])}
-        </Button>
-      </Grid>
-      <Grid padding='2px' item>
-        <Button className='boardButtons' sx='font-size: 50px; background-color: #abcdef'>
-          {printPiece(props.board[2])}
-        </Button>
-      </Grid>
-    </React.Fragment>
-  )
-}
+import BoardButton from './BoardButton'
 
 const Board = (props) => {
+  const board = [
+    [props.board[0], props.board[1], props.board[2]],
+    [props.board[3], props.board[4], props.board[5]],
+    [props.board[6], props.board[7], props.board[8]],
+  ]
+
   return (
     <div className='board'>
-      <Box>
-        <Grid container>
-          <Grid container item>
-            <FormRow board={[props.board[0], props.board[1], props.board[2]]} />
-          </Grid>
-          <Grid container item>
-            <FormRow board={[props.board[3], props.board[4], props.board[5]]} />
-          </Grid>
-          <Grid container item>
-            <FormRow board={[props.board[6], props.board[7], props.board[8]]} />
-          </Grid>
-        </Grid>
-      </Box>
+      {board.map((row, indexRow) => (
+        <div className='row'>
+          {row.map((piece, indexPiece) => (
+            <BoardButton index={+('' + indexRow + indexPiece)} piece={piece} />
+          ))}
+        </div>
+      ))}
     </div>
   )
 }

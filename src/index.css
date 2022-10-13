@@ -51,6 +51,11 @@ h3 {
   margin: 0 auto;
 }
 
+.boardDisplay {
+  display: flex;
+  justify-content: center;
+}
+
 .boardButtons {
   width: 150px;
   height: 150px;
@@ -58,4 +63,9 @@ h3 {
 
 .info {
   width: 450px;
+}
+
+.infoDisplay {
+  display: flex;
+  justify-content: center;
 }

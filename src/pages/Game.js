@@ -6,10 +6,11 @@ import Board from '../components/Board'
 import Info from '../components/Info'
 import { getLocalUser } from '../localStore'
 import { X } from '../constants'
+import { mockGameStateEventArgs } from '../gameProtocol'
 
 export const Game = () => {
-  const [board, setBoard] = useState([])
-  const [info, setInfo] = useState({})
+  const [board, setBoard] = useState([mockGameStateEventArgs.board])
+  const [info, setInfo] = useState({ players: ['', ''], playerTurn: '' })
 
   const playMockMove = () => {
     console.log('Mock Move Played')
@@ -45,10 +46,8 @@ export const Game = () => {
           </Button>
         </div>
       </header>
-      <div className='content'>
-        {board && <Board board={board} />}
-        {info && <Info data={info} />}
-      </div>
+      <div className='boardDisplay'>{board && <Board board={board} />}</div>
+      <div className='infoDisplay'>{info && <Info data={info} />}</div>
     </div>
   )
 }

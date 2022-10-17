@@ -1,10 +1,9 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { printPiece } from '../util'
 
-const Info = (props) => {
-  const firstPlayer = props.data.players[0]
-  const secondPlayer = props.data.players[1]
-  const playerTurn = props.data.playerTurn
+const Info = ({ data }) => {
+  const { players, playerTurn } = data
+  const [firstPlayer, secondPlayer] = players
 
   return (
     <div className='info'>

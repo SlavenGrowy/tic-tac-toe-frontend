@@ -11,9 +11,9 @@ const Board = (props) => {
   return (
     <div className='board'>
       {board.map((row, indexRow) => (
-        <div className='row'>
+        <div key={indexRow} className='row'>
           {row.map((piece, indexPiece) => (
-            <BoardButton index={+('' + indexRow + indexPiece)} piece={piece} />
+            <BoardButton key={indexRow * 3 + indexPiece} index={indexRow * 3 + indexPiece} piece={piece} />
           ))}
         </div>
       ))}

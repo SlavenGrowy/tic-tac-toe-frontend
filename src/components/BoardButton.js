@@ -5,7 +5,7 @@ const BoardButton = (props) => {
   const index = props.index
   const piece = props.piece
   return (
-    <Button id={index} className='boardButtons' sx='font-size: 50px; background-color: #abcdef; margin: 2px'>
+    <Button key={index} id='board-btn' className='boardButtons' sx=''>
       {printPiece(piece)}
     </Button>
   )

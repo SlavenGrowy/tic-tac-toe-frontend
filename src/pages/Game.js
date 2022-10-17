@@ -22,10 +22,9 @@ export const Game = () => {
   }
   const { gameId } = useParams()
 
-  const callback = useCallback((gameState) => {
-    console.log('GAME_STATE', gameState)
-    setBoard(gameState.board)
-    setInfo({ players: gameState.players, playerTurn: gameState.playerTurn })
+  const callback = useCallback(({ board, players, playerTurn }) => {
+    setBoard(board)
+    setInfo({ players, playerTurn })
   }, [])
 
   useEffect(() => {

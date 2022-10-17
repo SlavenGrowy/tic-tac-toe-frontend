@@ -1,12 +1,16 @@
 import { Button } from '@mui/material'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { joinRoom, playMove, offGameState, onGameState } from '../socketClient.js'
+import { joinRoom, offGameState, onGameState, playMove } from '../socketClient.js'
+import Board from '../components/Board'
+import Info from '../components/Info'
 import { getLocalUser } from '../localStore'
 import { X } from '../constants'
+import { mockGameStateEventArgs } from '../gameProtocol'
 
 export const Game = () => {
-  const { gameId } = useParams()
+  const [board, setBoard] = useState([mockGameStateEventArgs.board])
+  const [info, setInfo] = useState({ players: ['', ''], playerTurn: '' })
 
   const playMockMove = () => {
     console.log('Mock Move Played')
@@ -16,9 +20,11 @@ export const Game = () => {
       move: { piece: X, position: 5 },
     })
   }
+  const { gameId } = useParams()
 
-  const callback = useCallback((gameState) => {
-    console.log('GAME_STATE', gameState)
+  const callback = useCallback(({ board, players, playerTurn }) => {
+    setBoard(board)
+    setInfo({ players, playerTurn })
   }, [])
 
   useEffect(() => {
@@ -39,12 +45,8 @@ export const Game = () => {
           </Button>
         </div>
       </header>
-      <div className='content'>
-        <p>Game Screen</p>
-        <Button variant='contained' size='small' onClick={playMockMove}>
-          Play Mock Move
-        </Button>
-      </div>
+      <div className='boardDisplay'>{board && <Board board={board} />}</div>
+      <div className='infoDisplay'>{info && <Info data={info} />}</div>
     </div>
   )
 }

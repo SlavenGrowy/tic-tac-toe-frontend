@@ -50,3 +50,28 @@ h3 {
   border-bottom: 1px solid #eee;
   margin: 0 auto;
 }
+
+.boardDisplay {
+  display: flex;
+  justify-content: center;
+}
+
+.boardButtons {
+  width: 150px;
+  height: 150px;
+}
+
+#board-btn {
+  font-size: 50px;
+  background-color: #abcdef;
+  margin: 2px;
+}
+
+.info {
+  width: 450px;
+}
+
+.infoDisplay {
+  display: flex;
+  justify-content: center;
+}

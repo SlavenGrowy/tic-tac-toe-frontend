@@ -5,19 +5,18 @@ import { joinRoom, offGameState, onGameState, playMove } from '../socketClient.j
 import Board from '../components/Board'
 import Info from '../components/Info'
 import { getLocalUser } from '../localStore'
-import { X } from '../constants'
 import { mockGameStateEventArgs } from '../gameProtocol'
 
 export const Game = () => {
   const [board, setBoard] = useState([mockGameStateEventArgs.board])
   const [info, setInfo] = useState({ players: ['', ''], playerTurn: '' })
 
-  const playMockMove = () => {
+  const playedMove = (piece, position) => {
     console.log('Mock Move Played')
     playMove({
       gameId,
-      player: getLocalUser().id,
-      move: { piece: X, position: 5 },
+      playerId: getLocalUser().id,
+      move: { piece, position },
     })
   }
   const { gameId } = useParams()
@@ -45,7 +44,18 @@ export const Game = () => {
           </Button>
         </div>
       </header>
-      <div className='boardDisplay'>{board && <Board board={board} />}</div>
+      <div className='boardDisplay'>
+        {board && (
+          <Board
+            board={board}
+            movePlayed={(btnIndex) => {
+              const [firstPlayer, secondPlayer] = info.players
+              const piece = firstPlayer.id === getLocalUser().id ? firstPlayer.piece : secondPlayer.piece
+              playedMove(piece, btnIndex)
+            }}
+          />
+        )}
+      </div>
       <div className='infoDisplay'>{info && <Info data={info} />}</div>
     </div>
   )

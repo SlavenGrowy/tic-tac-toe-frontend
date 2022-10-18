@@ -39,7 +39,7 @@ export const Game = () => {
         {board && (
           <Board
             board={board}
-            movePlayed={async (btnIndex) => {
+            movePlayed={(btnIndex) => {
               const [firstPlayer, secondPlayer] = info.players
               const piece = firstPlayer.id === getLocalUser().id ? firstPlayer.piece : secondPlayer.piece
               playMove({

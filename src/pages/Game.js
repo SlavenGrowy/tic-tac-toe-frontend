@@ -10,15 +10,6 @@ import { mockGameStateEventArgs } from '../gameProtocol'
 export const Game = () => {
   const [board, setBoard] = useState([mockGameStateEventArgs.board])
   const [info, setInfo] = useState({ players: ['', ''], playerTurn: '' })
-
-  const playedMove = (piece, position) => {
-    console.log('Mock Move Played')
-    playMove({
-      gameId,
-      playerId: getLocalUser().id,
-      move: { piece, position },
-    })
-  }
   const { gameId } = useParams()
 
   const callback = useCallback(({ board, players, playerTurn }) => {
@@ -48,10 +39,14 @@ export const Game = () => {
         {board && (
           <Board
             board={board}
-            movePlayed={(btnIndex) => {
+            movePlayed={async (btnIndex) => {
               const [firstPlayer, secondPlayer] = info.players
               const piece = firstPlayer.id === getLocalUser().id ? firstPlayer.piece : secondPlayer.piece
-              playedMove(piece, btnIndex)
+              playMove({
+                gameId,
+                playerId: getLocalUser().id,
+                move: { piece, position: btnIndex },
+              })
             }}
           />
         )}

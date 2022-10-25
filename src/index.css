@@ -51,7 +51,17 @@ h3 {
   margin: 0 auto;
 }
 
+.finishedGame {
+  display: flex;
+  justify-content: center;
+}
+
 .boardDisplay {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
   display: flex;
   justify-content: center;
 }

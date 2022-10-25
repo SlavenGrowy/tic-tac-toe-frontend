@@ -38,12 +38,10 @@ export const Game = () => {
       </header>
       <br />
       <div className='finishedGame'>
-        {isFinished && winner != null ? (
+        {isFinished && winner != null && (
           <Alert severity='success'>{winner === info.players[0].id ? info.players[0].username : info.players[1].username} won! 🎉</Alert>
-        ) : (
-          ''
         )}
-        {isFinished && winner == null ? <Alert severity='info'>THERE IS NO WINNER</Alert> : ''}
+        {isFinished && winner == null && <Alert severity='info'>The game is a draw, or Stalemate!</Alert>}
       </div>
       <div className='boardDisplay'>
         {board && (
@@ -66,7 +64,7 @@ export const Game = () => {
         {isFinished && (
           <Button
             onClick={() => {
-              if (isFinished) navigate('/')
+              navigate('/')
             }}
           >
             Navigate to home screen

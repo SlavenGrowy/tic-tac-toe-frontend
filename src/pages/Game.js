@@ -7,6 +7,7 @@ import Info from '../components/Info'
 import { getLocalUser } from '../localStore'
 import { mockGameStateEventArgs } from '../gameProtocol'
 import { GAME_STATUS } from '../constants'
+import ReactConfetti from "react-confetti";
 
 export const Game = () => {
   const [board, setBoard] = useState([mockGameStateEventArgs.board])
@@ -33,18 +34,18 @@ export const Game = () => {
 
   return (
     <div className='App'>
+        {isFinished && winner != null && <ReactConfetti recycle={false}/>}
       <header>
         <h1>Tic-Tac-Toe</h1>
       </header>
-      <br />
       <div className='finishedGame'>
-        {isFinished && winner != null && (
-          <Alert severity='success'>{winner === info.players[0].id ? info.players[0].username : info.players[1].username} won! 🎉</Alert>
-        )}
-        {isFinished && winner == null && <Alert severity='info'>The game is a draw, or Stalemate!</Alert>}
+          <Alert style={{visibility: isFinished  ? 'visible':'hidden'}}
+              severity={winner != null ? 'success':'info'}>
+              {winner == null ?'The game is a Draw! 🎨':` ${winnerName} won! 🎉`}
+          </Alert>
       </div>
       <div className='boardDisplay'>
-        {board && (
+        {board &&
           <Board
             board={board}
             movePlayed={(btnIndex) => {
@@ -57,20 +58,10 @@ export const Game = () => {
               })
             }}
           />
-        )}
+        }
       </div>
       <div className='infoDisplay'>{info && <Info data={info} />}</div>
-      <div className='button'>
-        {isFinished && (
-          <Button
-            onClick={() => {
-              navigate('/')
-            }}
-          >
-            Navigate to home screen
-          </Button>
-        )}
-      </div>
+
     </div>
   )
 }

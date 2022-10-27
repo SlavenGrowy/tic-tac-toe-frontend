@@ -25,7 +25,7 @@ const Players = () => {
       <h2>Online Players HERE</h2>
       <List>
         {onlineUsers.map((user) => (
-          <ListItemButton
+          <ListItemButton style={{alignItems:"center", textAlign:"center", border: "3px solid #abcdef", borderRadius: "50px"}}
             key={user.id}
             onClick={async () => {
               const localUserId = getLocalUser().id

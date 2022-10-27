@@ -21,8 +21,7 @@ header {
   gap: 100px;
 }
 
-header h1,
-h3 {
+header h1, h3 {
   color: white;
   max-width: 1200px;
   margin: 0 auto;
@@ -31,6 +30,10 @@ h3 {
 .user {
   display: inline-block;
   padding: 5px;
+}
+
+.user h3 {
+  margin-right: 1rem;
 }
 
 .user button {
@@ -54,6 +57,7 @@ h3 {
 .finishedGame {
   display: flex;
   justify-content: center;
+  visibility: hidden;
 }
 
 .boardDisplay {

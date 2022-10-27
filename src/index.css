@@ -17,7 +17,7 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 100px;
 }
 
@@ -28,7 +28,9 @@ header h1, h3 {
 }
 
 .user {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-items: center;
   padding: 5px;
 }
 
@@ -50,11 +52,12 @@ header h1, h3 {
 .content h2 {
   display: table;
   padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
   margin: 0 auto;
 }
 
 .finishedGame {
+  padding-top: .5rem;
+  padding-bottom: .25rem;
   display: flex;
   justify-content: center;
   visibility: hidden;

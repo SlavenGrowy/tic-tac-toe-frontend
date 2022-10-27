@@ -13,6 +13,7 @@ export const Game = () => {
   const [board, setBoard] = useState([mockGameStateEventArgs.board])
   const [info, setInfo] = useState({ players: ['', ''], playerTurn: '' })
   const [winner, setWinner] = useState('')
+  const [winnerName, setWinnerName] = useState('')
   const [isFinished, setFinished] = useState(true)
   const { gameId } = useParams()
   const navigate = useNavigate()
@@ -22,6 +23,8 @@ export const Game = () => {
     setInfo({ players, playerTurn })
     setFinished(state === GAME_STATUS.FINISHED)
     setWinner(winner)
+    if(winner)
+        setWinnerName(winner === players[0]?.id ? players[0]?.username : players[1]?.username)
   }, [])
 
   useEffect(() => {
@@ -36,7 +39,19 @@ export const Game = () => {
     <div className='App'>
         {isFinished && winner != null && <ReactConfetti recycle={false}/>}
       <header>
+          <div></div>
         <h1>Tic-Tac-Toe</h1>
+          <div className='button'>
+              {isFinished &&
+                  <Button
+                      onClick={() => {
+                          navigate('/')
+                      }}
+                  >
+                      Go back to 🏠
+                  </Button>
+              }
+          </div>
       </header>
       <div className='finishedGame'>
           <Alert style={{visibility: isFinished  ? 'visible':'hidden'}}

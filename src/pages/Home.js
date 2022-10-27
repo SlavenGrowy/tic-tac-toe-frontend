@@ -41,9 +41,10 @@ export function Home() {
   return (
     <div className='App'>
       <header>
+        <div></div>
         <h1>Tic-Tac-Toe</h1>
         <div className='user'>
-          <h3>{username}</h3>
+          <h3 className='userName'>{username}</h3>
           <ChangeUsernameButton
             onNameChange={(newUsername) => {
               setUsername(newUsername)

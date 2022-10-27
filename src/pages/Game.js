@@ -7,7 +7,7 @@ import Info from '../components/Info'
 import { getLocalUser } from '../localStore'
 import { mockGameStateEventArgs } from '../gameProtocol'
 import { GAME_STATUS } from '../constants'
-import ReactConfetti from "react-confetti";
+import ReactConfetti from 'react-confetti'
 
 export const Game = () => {
   const [board, setBoard] = useState([mockGameStateEventArgs.board])
@@ -23,8 +23,7 @@ export const Game = () => {
     setInfo({ players, playerTurn })
     setFinished(state === GAME_STATUS.FINISHED)
     setWinner(winner)
-    if(winner)
-        setWinnerName(winner === players[0]?.id ? players[0]?.username : players[1]?.username)
+    if (winner) setWinnerName(winner === players[0]?.id ? players[0]?.username : players[1]?.username)
   }, [])
 
   useEffect(() => {
@@ -37,30 +36,29 @@ export const Game = () => {
 
   return (
     <div className='App'>
-        {isFinished && winner != null && <ReactConfetti recycle={false}/>}
+      {isFinished && winner != null && <ReactConfetti recycle={false} />}
       <header>
-          <div></div>
+        <div></div>
         <h1>Tic-Tac-Toe</h1>
-          <div className='button'>
-              {isFinished &&
-                  <Button
-                      onClick={() => {
-                          navigate('/')
-                      }}
-                  >
-                      Go back to 🏠
-                  </Button>
-              }
-          </div>
+        <div className='button'>
+          {isFinished && (
+            <Button
+              onClick={() => {
+                navigate('/')
+              }}
+            >
+              Go back to 🏠
+            </Button>
+          )}
+        </div>
       </header>
       <div className='finishedGame'>
-          <Alert style={{visibility: isFinished  ? 'visible':'hidden'}}
-              severity={winner != null ? 'success':'info'}>
-              {winner == null ?'The game is a Draw! 🎨':` ${winnerName} won! 🎉`}
-          </Alert>
+        <Alert style={{ visibility: isFinished ? 'visible' : 'hidden' }} severity={winner != null ? 'success' : 'info'}>
+          {winner == null ? 'The game is a Draw! 🎨' : ` ${winnerName} won! 🎉`}
+        </Alert>
       </div>
       <div className='boardDisplay'>
-        {board &&
+        {board && (
           <Board
             board={board}
             movePlayed={(btnIndex) => {
@@ -73,10 +71,9 @@ export const Game = () => {
               })
             }}
           />
-        }
+        )}
       </div>
       <div className='infoDisplay'>{info && <Info data={info} />}</div>
-
     </div>
   )
 }

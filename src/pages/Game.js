@@ -12,9 +12,9 @@ import ReactConfetti from 'react-confetti'
 export const Game = () => {
   const [board, setBoard] = useState([mockGameStateEventArgs.board])
   const [info, setInfo] = useState({ players: ['', ''], playerTurn: '' })
-  const [winner, setWinner] = useState('')
+  const [winner, setWinner] = useState(null)
   const [winnerName, setWinnerName] = useState('')
-  const [isFinished, setFinished] = useState(true)
+  const [isFinished, setFinished] = useState(false)
   const { gameId } = useParams()
   const navigate = useNavigate()
 

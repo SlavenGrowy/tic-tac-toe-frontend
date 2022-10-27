@@ -12,3 +12,4 @@ export const X = 1
 export const O = 0
 export const EMPTY = 9
 export const GAME_SOCKET_URL = 'http://localhost:8086/game'
+// export const GAME_SOCKET_URL = 'https://8be1-77-70-69-38.eu.ngrok.io/game'

@@ -48,7 +48,7 @@ export const Game = () => {
                 navigate('/')
               }}
             >
-              Go back to 🏠
+              Back to 🏠
             </Button>
           )}
         </div>

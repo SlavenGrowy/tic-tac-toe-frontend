@@ -43,6 +43,7 @@ export const Game = () => {
         <div className='button'>
           {isFinished && (
             <Button
+              variant='outlined'
               onClick={() => {
                 navigate('/')
               }}
